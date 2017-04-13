@@ -13,16 +13,22 @@
 int x = 0;
 double lts = ts;
 
+
+
+char cha = '#';
+char chb = ':';
+
+
 int main(){
 	while(1){
 	x += 1;
 		printf("%#-10g", lts);
 		
 		for(int i = 0; i < at+sin(		(  (x*pi)/180  )*(360/lts)    )*at; i++){
-			printf("#");
+			printf("%c", cha);
 		}
 		for(int i = 0; i < at-sin(              (  (x*pi)/180  )*(360/lts)    )*at+ed; i++){
-                        printf(" ");
+                        printf("%c", chb);
                 }
 		printf("\n");
 		usleep(delay);
