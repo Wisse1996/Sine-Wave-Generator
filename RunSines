@@ -1,0 +1,2 @@
+gcc ./Sines.c -o ./Sines
+./Sines
