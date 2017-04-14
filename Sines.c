@@ -6,19 +6,15 @@
 #define da 0			//deattenuation
 #define ts 90			//timescale
 #define pi 3.14159		//PI
-#define delay 20000		//timing parameter
+#define delay 20000		//frame time
 #define ed 0.0000000001		//evil decimal math error
 
-
-int x = 0;
 double lts = ts;
-
-
 
 char cha = '#';
 char chb = ':';
 
-
+int x = 0;
 int main(){
 	while(1){
 	x += 1;
