@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 #define at 113			//attenuation
-#define da 0			//deattenuation
-#define ts 90			//timescale
+#define da 0.1			//de-scaling
+#define ts 360			//initial timescale
 #define pi 3.14159		//PI
 #define delay 20000		//frame time
 #define ed 0.0000000001		//evil decimal math error
@@ -33,5 +33,3 @@ int main(){
 		else lts = ts;
 	}
 }
-
-
