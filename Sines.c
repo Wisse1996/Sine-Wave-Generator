@@ -5,35 +5,30 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#define at 245			    //attenuation
-#define da 0.2			    //de-scaling
-#define ts 360			    //initial timescale
-#define mts 0               //minimum timescale
-#define delay 10000		    //frame time
+#define sine sin((180/pi)*(360/lts))    // master function
+#define at 245			                // attenuation
+#define da 0.1			                // de-attenuation
+#define ts 180*pi			                // initial timescale
+#define mts 0                           // minimum timescale
+#define delay 5000		                // frametime
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
-
-#define ed 0.0000000001
-#define pi 3.14159
 
 int main(){
+    const double ed = 0.0000000001;
+    const double pi = 3.141592653589793;
     double lts = ts;
     char cha = '#';
     char chb = ':';
     double alpha, beta = 0;
     _Bool swap = 0;
-    int x = 0;
 	while(1){
         
-        x++;
-        if(x >= 360) x = 0;
-		
-        alpha = (at/2)+             sin((pi*x*(360/lts))/180)                  *(at/2);
-        beta = (at/2)-             sin((pi*x*(360/lts))/180)                  *(at/2)+ed;
+        alpha = (at/2)+sine*(at/2)+ed;
+        beta = (at/2)-sine*(at/2)+ed;
         
         if(alpha >= 100){
-            printf("");
             printf("%.5f", alpha);
         }
         else if(alpha >= 10){
@@ -44,16 +39,21 @@ int main(){
             printf("00");
             printf("%.5f", alpha);
         }
-        else if(alpha >= 0){
+        else{
             printf("00");
             printf("%.5f", alpha);
         }
-        else if(alpha < 0){
-            printf("WHOA THERE, IT'S AN ERROR!");
-        }
         
-		for(int i = 0; i <= 4; i++) printf(" ");
+		printf(" == ");
 		
+        
+        
+        
+        
+        
+        
+        
+        
 		for(int i = 0; i < alpha; i++){
 			printf("%c", cha);
 		}
@@ -61,39 +61,44 @@ int main(){
             printf("%c", chb);
         }
 		
-        for(int i = 0; i <= 4; i++) printf(" ");
-        if(lts >= 100){
-            printf("");
+        
+        
+        
+        
+        printf(" == ");
+        
+        if(lts >= 100-ed){
             printf("%.1f", lts);
         }
-        else if(lts >= 10){
+        else if(lts >= 10-ed){
             printf("0");
             printf("%.1f", lts);
         }
-		else if(lts >= 1){
+		else if(lts >= 1-ed){
             printf("00");
             printf("%.1f", lts);
         }
-        else if(lts >= 0){
+        else{
             printf("00");
             printf("%.1f", lts);
         }
-        else if(lts < 0){
-            printf("WHOA THERE, IT'S AN ERROR!");
-        }
+        
+        
+        
+        
         
 		printf("\n");
         
 		usleep(delay);
 		
-		if(lts > da+mts && !swap){
+		if(lts >= mts+da && !swap){
             lts -= da;
         }
         else if(!swap){
             swap = 1;
         };
         
-        if(lts < (ts - da) && swap){
+        if(lts <= ts-da && swap){
             lts += da;
         }
         else if(swap){
