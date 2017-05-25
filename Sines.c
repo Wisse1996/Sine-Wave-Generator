@@ -5,10 +5,13 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#define sine sin((180/pi)*(360/lts))    // master function
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+#define sine sin((180/pi)*(((pi*lts)/(180))))    // master function
 #define at 245			                // attenuation
 #define da 0.1			                // de-attenuation
-#define ts 180*pi			                // initial timescale
+#define ts 100   		                // initial timescale
 #define mts 0                           // minimum timescale
 #define delay 5000		                // frametime
 
@@ -65,6 +68,8 @@ int main(){
         
         
         
+        
+        
         printf(" == ");
         
         if(lts >= 100-ed){
@@ -82,6 +87,8 @@ int main(){
             printf("00");
             printf("%.1f", lts);
         }
+        
+        
         
         
         
